@@ -14,7 +14,7 @@
 					<p>O que deseja acessar?</p>
 					<div class="row">
 						<div class="col-sm-4">
-							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" href="#" role="button">
+							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" role="button" href="{{ url('/home/newsletter') }}">
 								<div style="margin-top: 50px;">NewsLetters</div>
 								<div>
 									<h1 class="glyphicon glyphicon-envelope"></h1>
