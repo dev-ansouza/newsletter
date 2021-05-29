@@ -11,11 +11,14 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
+//Rota para os controllers
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+//Rota para a tela de login
+Route::get('/', 'WelcomeController@index');
+
+//Rota para a tela pós login
+Route::get('home', 'HomeController@index');
