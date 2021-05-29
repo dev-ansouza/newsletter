@@ -12,6 +12,9 @@
 */
 
 //Rota para os controllers
+
+use App\Http\Controllers\NewsLetter\NewsLetterController;
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -20,5 +23,11 @@ Route::controllers([
 //Rota para a tela de login
 Route::get('/', 'WelcomeController@index');
 
-//Rota para a tela pós login
+//Rota para a tela home
 Route::get('home', 'HomeController@index');
+
+//Rota para a tela de NewsLetter
+Route::get('/home/newsletter', function()
+{
+    return view('newsletter/list');
+});
