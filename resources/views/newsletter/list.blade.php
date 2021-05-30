@@ -19,10 +19,10 @@
 
 					<div class="col-sm-12">
 						<div class="btn-group pull-right">
-							<button type="button" class="btn btn-danger">
+							<a type="button" class="btn btn-danger" href="{{ url('/home/newsletter/new') }}">
 								<span class="glyphicon glyphicon-plus"></span>
 								Novo
-							</button>
+							</a>
 						</div>
 					</div>
 

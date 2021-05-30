@@ -31,3 +31,8 @@ Route::get('/home/newsletter', function()
 {
     return view('newsletter/list');
 });
+
+//Rota para o formulário de criação de newsletter
+Route::get('/home/newsletter/new', function(){
+	return view('newsletter/form');
+});
