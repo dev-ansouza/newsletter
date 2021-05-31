@@ -139,14 +139,19 @@ class NewsLetterController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove um newsletter.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function destroy($id)
 	{
-		//
+		//Remove um newsletter
+		$result = DB::table('newsletters')
+		->where('newsletters.id', '=', $id)
+		->delete();
+		
+		//Retorna a view com os parametros a serem usados
+		return redirect('/newsletter');	
 	}
-
 }
