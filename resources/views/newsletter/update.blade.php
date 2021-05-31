@@ -9,23 +9,29 @@
 
 					<div class="col-sm-12">
 						<h1 class="text-center">
-							Novo NewsLetter
+							Atualizando NewsLetter
 						</h1>
 					</div>
 
                     <form method="POST">
+
+                        <input type="hidden" name="id" name="id" value="<?php echo $newsletter->id ?>">
+
                         <div class="form-group">
                             <label for="titulo">Título</label>
-                            @if($data)
-                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título" autofocus required value="">
-                            @else
-                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título" autofocus required>
-                            @endif
+                            <input type="titulo" 
+                            style="width: 30%;" 
+                            class="form-control" 
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Título"  
+                            required 
+                            value="<?php echo $newsletter->titulo ?>">
                         </div>
 
                         <div class="form-group">
                             <label for="text">NewsLetter</label>
-                            <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!"></textarea>
+                            <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!"><?php echo $newsletter->titulo ?></textarea>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

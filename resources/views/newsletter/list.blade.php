@@ -42,7 +42,7 @@
 								<td scope="row">{{ $newsletter['name'] }}</td>
 								<td>
 									<div class=" pull-right">
-										<a type="button" class="btn btn-default btn-sm" href="{{ url('/home/newsletter/edit/' . $newsletter['id']) }}">
+										<a type="button" class="btn btn-default btn-sm" href="{{ url('/home/newsletter/update/' . $newsletter['id']) }}">
 											<span class="glyphicon glyphicon-pencil"></span>
 										</a>
 										<a type="button" class="btn btn-danger btn-sm">

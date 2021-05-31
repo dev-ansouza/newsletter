@@ -28,13 +28,14 @@ Route::get('home', 'HomeController@index');
 //Rota para a tela de listagem das NewsLetters
 Route::get('/home/newsletter', 'NewsLetterController@index');
 
-//Rota para o formulário de newsletter
+//Rota para o formulário de criação de newsletter
 Route::get('/home/newsletter/new', function() {
-	return view('newsletter/form');
+	return view('newsletter/create');
 });
 
 //Rota para o save de newsletter
 Route::post('/home/newsletter/new', 'NewsLetterController@store');
 
 //Rota para edição de newsletter
-Route::get('/home/newsletter/edit/{id}', 'NewsLetterController@edit');
+Route::get('/home/newsletter/update/{id}', 'NewsLetterController@update'); 
+Route::post('/home/newsletter/update/{id}', 'NewsLetterController@store'); 

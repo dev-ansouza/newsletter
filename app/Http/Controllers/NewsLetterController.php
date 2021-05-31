@@ -44,7 +44,7 @@ class NewsLetterController extends Controller {
 	 */
 	public function create()
 	{
-		return view('newsletter/form');
+		return view('newsletter/create');
 	}
 
 	/**
@@ -60,25 +60,27 @@ class NewsLetterController extends Controller {
 		//Armazena o id do usuário logado
 		$user_id = Auth::user()->id;
 
-		//Dados a serem salvos
-		$data = [
+		//Definição da arrau que armazenará os dados a serem salvos
+		$newsletter = [
 			'titulo' => $data['titulo'],
 			'text' => $data['text'],
 			'user_id' => $user_id
 		];
-
+// dd($data);
 		//Verifica se está em edição
 		if (!empty($data['id'])) {
 
-			$data['id']->array_push($request['id']);
+			dd('to if');
 
-			//Atualiza os dados de newsletter.
-			NewsLetter::update($data);
+
+			DB::table('newsletters')
+			->where('newsletters.id', '=', $data['id'])
+			->update($newsletter); 
 
 		} else {
 
 			//Cria um novo newsletter.
-			NewsLetter::create($data);
+			NewsLetter::create($newsletter);
 		}
 
 		//Retorna para a view de listagem
@@ -98,23 +100,14 @@ class NewsLetterController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Retorna a view de edição de newsletter com seus dados a serem editados.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		//Retorna o newsletter a ser editado
-		$data = DB::table('newsletters')
-				->where('newsletters.id', '=', $id)
-				->select('newsletters.*')
-				->get();
-
-				// dd($data);
-
-		//Retorna a view com os parametros a serem usados
-		return view('newsletter/form', $data);		
+		
 	}
 
 	/**
@@ -125,7 +118,17 @@ class NewsLetterController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		//Retorna o newsletter a ser editado
+		$result = DB::table('newsletters')
+		->where('newsletters.id', '=', $id)
+		->select('newsletters.*')
+		->get();
+
+		$newsletter = $result[0];
+		// dd($newsletter); 
+
+		//Retorna a view com os parametros a serem usados
+		return view('newsletter/update', ['newsletter' => $newsletter]);		
 	}
 
 	/**
