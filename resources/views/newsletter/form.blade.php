@@ -13,16 +13,22 @@
 						</h1>
 					</div>
 
-                    <form action="POST">
+                    <form method="POST">
                         <div class="form-group">
                             <label for="titulo">Título</label>
-                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título" autofocus>
+                            @if($data)
+                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título" autofocus required value="">
+                            @else
+                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título" autofocus required>
+                            @endif
                         </div>
 
                         <div class="form-group">
                             <label for="text">NewsLetter</label>
                             <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!"></textarea>
                         </div>
+
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Confirmar</button>

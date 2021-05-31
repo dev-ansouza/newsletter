@@ -1,10 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use Auth;
 use App\Http\Controllers\Controller;
+use App\NewsLetter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Auth;
 
 use Illuminate\Http\Request;
 
@@ -38,23 +38,52 @@ class NewsLetterController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Retorna a view de criação.
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+		return view('newsletter/form');
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Salva os dados de NewsLetter no DB
 	 *
-	 * @return Response
+	 * @param \Illuminate\Http\Request $request
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		//Armazena os dados da requisição
+		$data = $request->all();
+
+		//Armazena o id do usuário logado
+		$user_id = Auth::user()->id;
+
+		//Dados a serem salvos
+		$data = [
+			'titulo' => $data['titulo'],
+			'text' => $data['text'],
+			'user_id' => $user_id
+		];
+
+		//Verifica se está em edição
+		if (!empty($data['id'])) {
+
+			$data['id']->array_push($request['id']);
+
+			//Atualiza os dados de newsletter.
+			NewsLetter::update($data);
+
+		} else {
+
+			//Cria um novo newsletter.
+			NewsLetter::create($data);
+		}
+
+		//Retorna para a view de listagem
+		return redirect('/home/newsletter');
+
 	}
 
 	/**
@@ -76,7 +105,16 @@ class NewsLetterController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		//Retorna o newsletter a ser editado
+		$data = DB::table('newsletters')
+				->where('newsletters.id', '=', $id)
+				->select('newsletters.*')
+				->get();
+
+				// dd($data);
+
+		//Retorna a view com os parametros a serem usados
+		return view('newsletter/form', $data);		
 	}
 
 	/**
