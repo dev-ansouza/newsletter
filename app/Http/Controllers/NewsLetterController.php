@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -11,20 +12,29 @@ class NewsLetterController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		//Retorna todos os newsletters
-		$results = DB::select('SELECT * FROM newsletters');
+		//Armazena o id do usuário logado
+		$user_id = Auth::user()->id;
 
-		//Converte os resultados para JSON e armazena na array $data
-		$data['newsletters'] = json_decode(json_encode($results), true);
+		//Retorna todos os newsletters vinculados ao usuário logado
+		$results = DB::table('newsletters')
+					->join('users', 'newsletters.user_id', '=', 'users.id')
+					->where('newsletters.user_id', '=', $user_id)
+					->select('newsletters.*', 'users.name')
+					->get();
 
-		return view('newsletter/list');
+		//Converte os resultados para JSON e armazena na array $newsletters
+		$newsletters['newsletters'] = json_decode(json_encode($results), true);
+
+		//Retorna a view com os parametros a serem usados
+		return view('newsletter/list', $newsletters);
 	}
 
 	/**

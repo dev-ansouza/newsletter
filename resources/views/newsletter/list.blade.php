@@ -19,7 +19,7 @@
 
 					<div class="col-sm-12">
 						<div class="btn-group pull-right">
-							<a type="button" class="btn btn-danger" href="{{ url('/home/newsletter/new') }}">
+							<a type="button" class="btn btn-primary" href="{{ url('/home/newsletter/new') }}">
 								<span class="glyphicon glyphicon-plus"></span>
 								Novo
 							</a>
@@ -29,27 +29,30 @@
 					<table class="table">
 						<thead>
 						<tr>
-							<th>#</th>
-							<th>Título</th>
-							<th>Autor</th>
+							<th class="col-sm-3">Título</th>
+							<th class="col-sm-4">Autor</th>
+							<th class="col-sm-2"></th>
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Felicidade</td>
-							<td>Arthur</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Otimismo</td>
-							<td>José</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Teste</td>
-							<td>Testador</td>
-						</tr>
+						@if($newsletters)
+							@foreach($newsletters as $newsletter)	
+							<tr>
+								<td scope="row">{{ $newsletter['titulo'] }}</td>
+								<td scope="row">{{ $newsletter['name'] }}</td>
+								<td>
+									<div class=" pull-right">
+										<a type="button" class="btn btn-default btn-sm" href="{{ url('/home/newsletter/edit') }}">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</a>
+										<a type="button" class="btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									</div>
+								</td>
+							</tr>
+							@endforeach
+						@endif
 						</tbody>
 					</table>
 				</div>
