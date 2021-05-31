@@ -52,9 +52,9 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">
-									Register
+									Registrar
 								</button>
-								<a class="btn btn-secondary" href="{{ url('/') }}">Voltar</a>
+								<a class="btn btn-default" href="{{ url('/') }}">Voltar</a>
 							</div>
 						</div>
 					</form>
