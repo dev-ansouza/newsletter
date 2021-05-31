@@ -12,9 +12,6 @@
 */
 
 //Rota para os controllers
-
-use App\Http\Controllers\NewsLetter\NewsLetterController;
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -27,10 +24,7 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 //Rota para a tela de NewsLetter
-Route::get('/home/newsletter', function()
-{
-    return view('newsletter/list');
-});
+Route::get('/home/newsletter', 'NewsLetterController@index');
 
 //Rota para o formulário de criação de newsletter
 Route::get('/home/newsletter/new', function(){

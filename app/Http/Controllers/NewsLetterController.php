@@ -1,21 +1,15 @@
-<?php namespace App\Http\Controllers\NewsLetter;
+<?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use Illuminate\Http\Request;
 
 class NewsLetterController extends Controller {
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		// $this->middleware('auth');
-	}
+	use AuthenticatesAndRegistersUsers;
 
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +18,13 @@ class NewsLetterController extends Controller {
 	 */
 	public function index()
 	{
-		// return 'teste';
+		//Retorna todos os newsletters
+		$results = DB::select('SELECT * FROM newsletters');
+
+		//Converte os resultados para JSON e armazena na array $data
+		$data['newsletters'] = json_decode(json_encode($results), true);
+
+		return view('newsletter/list');
 	}
 
 	/**
