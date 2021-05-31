@@ -39,3 +39,9 @@ Route::post('/home/newsletter/new', 'NewsLetterController@store');
 //Rota para edição de newsletter
 Route::get('/home/newsletter/update/{id}', 'NewsLetterController@update'); 
 Route::post('/home/newsletter/update/{id}', 'NewsLetterController@store'); 
+
+//Rota para visualização de newsletter
+Route::get('/home/newsletter/show/{id}', 'NewsLetterController@show'); 
+
+//Rota para remoção de newsletter
+Route::get('/home/newsletter/destroy/{id}', 'NewsLetterController@destroy'); 

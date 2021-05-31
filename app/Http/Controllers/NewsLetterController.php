@@ -15,7 +15,7 @@ class NewsLetterController extends Controller {
 
 	/**
 	 * Responsável pela funcionalidade da listagem de newsletters.
-	 *
+	 
 	 * @return Response
 	 */
 	public function index(Request $request)
@@ -66,12 +66,9 @@ class NewsLetterController extends Controller {
 			'text' => $data['text'],
 			'user_id' => $user_id
 		];
-// dd($data);
+
 		//Verifica se está em edição
 		if (!empty($data['id'])) {
-
-			dd('to if');
-
 
 			DB::table('newsletters')
 			->where('newsletters.id', '=', $data['id'])
@@ -89,14 +86,24 @@ class NewsLetterController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Retorna a views de visualização de newsletter.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function show($id)
 	{
-		//
+		//Retorna o newsletter a ser visualizado
+		$result = DB::table('newsletters')
+		->where('newsletters.id', '=', $id)
+		->select('newsletters.*')
+		->get();
+
+		//Armazena os dados
+		$newsletter = $result[0];
+
+		//Retorna a view com os parametros a serem usados
+		return view('newsletter/show', ['newsletter' => $newsletter]);
 	}
 
 	/**
@@ -111,7 +118,7 @@ class NewsLetterController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Atualiza os dados de uma newsletter em edição.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -124,8 +131,8 @@ class NewsLetterController extends Controller {
 		->select('newsletters.*')
 		->get();
 
+		//Armazena os dados
 		$newsletter = $result[0];
-		// dd($newsletter); 
 
 		//Retorna a view com os parametros a serem usados
 		return view('newsletter/update', ['newsletter' => $newsletter]);		

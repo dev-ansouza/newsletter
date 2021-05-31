@@ -9,7 +9,7 @@
 
 					<div class="col-sm-12">
 						<h1 class="text-center">
-							Atualizando NewsLetter
+							Visualizando NewsLetter
 						</h1>
 					</div>
 
@@ -25,20 +25,19 @@
                             id="titulo"
                             name="titulo"
                             placeholder="Título"  
-                            required 
+                            disabled                            
                             value="<?php echo $newsletter->titulo ?>">
                         </div>
 
                         <div class="form-group">
                             <label for="text">NewsLetter</label>
-                            <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!"><?php echo $newsletter->titulo ?></textarea>
+                            <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!" disabled><?php echo $newsletter->titulo ?></textarea>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Atualizar</button>
-                            <a type="button" class="btn btn-danger" href="{{ url('home/newsletter') }}">Cancelar</a>
+                            <a type="button" class="btn btn-default" href="{{ url('home/newsletter') }}">Voltar</a>
                         </div>
 
                     </form>
@@ -65,7 +64,11 @@
         'bold italic forecolor backcolor code | alignleft aligncenter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat | fullscreen | help',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        setup: function(ed)
+        {
+            ed.settings.readonly = true;
+        }
     });
 </script>
   
