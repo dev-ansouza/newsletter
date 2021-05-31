@@ -12,7 +12,6 @@ class NewsLetterController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-
 	/**
 	 * Responsável pela funcionalidade da listagem de newsletters.
 	 
@@ -82,7 +81,6 @@ class NewsLetterController extends Controller {
 
 		//Retorna para a view de listagem
 		return redirect('/home/newsletter');
-
 	}
 
 	/**
@@ -104,17 +102,6 @@ class NewsLetterController extends Controller {
 
 		//Retorna a view com os parametros a serem usados
 		return view('newsletter/show', ['newsletter' => $newsletter]);
-	}
-
-	/**
-	 * Retorna a view de edição de newsletter com seus dados a serem editados.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		
 	}
 
 	/**
