@@ -40,7 +40,7 @@
                             placeholder="E-mail" 
                             required
                             disabled
-                            value="<?php echo $people->nome ?>">
+                            value="<?php echo $people->email ?>">
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -81,7 +81,7 @@ Route::get('/home/newsletter/destroy/{id}', 'NewsLetterController@destroy');
 */
 
 //Rota para a tela de listagem das Pessoas
-Route::get('/home/people', 'NewsLetterController@index');
+Route::get('/home/people', 'PeopleController@index');
 
 //Rota para o formulário de criação de pessoa
 Route::get('/home/people/new', function() {

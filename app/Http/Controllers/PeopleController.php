@@ -70,7 +70,7 @@ class PeopleController extends Controller {
 		if (!empty($data['id'])) {
 
 			DB::table('peoples')
-			->where('peopless.id', '=', $data['id'])
+			->where('peoples.id', '=', $data['id'])
 			->update($people); 
 
 		} else {
@@ -139,7 +139,7 @@ class PeopleController extends Controller {
 		->delete();
 		
 		//Retorna a view com os parametros a serem usados
-		return redirect('/people');	
+		return redirect('/home/people');	
 	}
 
 }

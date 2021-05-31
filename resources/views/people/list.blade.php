@@ -39,7 +39,7 @@
 							@foreach($peoples as $people)	
 							<tr>
 								<td scope="row">{{ $people['nome'] }}</td>
-								<td scope="row">{{ $people['e-mail'] }}</td>
+								<td scope="row">{{ $people['email'] }}</td>
 								<td>
 									<div class=" pull-right">
 										<a type="button" class="btn btn-info btn-sm" href="{{ url('/home/people/update/' . $people['id']) }}">

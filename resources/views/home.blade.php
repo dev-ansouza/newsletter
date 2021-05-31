@@ -22,7 +22,7 @@
 							</a>
 						</div>
 						<div class="col-sm-4">
-							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" href="#" role="button">
+							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" href="{{ url('/home/people') }}" role="button">
 								<div style="margin-top: 50px;">Pessoas</div>
 								<div>
 									<h1 class="glyphicon glyphicon-user"></h1>
