@@ -19,11 +19,37 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+
+/*  ======================================== 
+
+	Rota relacionada ao Login
+
+	========================================
+*/
+
 //Rota para a tela de login
 Route::get('/', 'WelcomeController@index');
 
+
+
+/*  ======================================== 
+
+	Rota relacionada a tela inicial do projeto pós login
+
+	========================================
+*/
+
 //Rota para a tela home
 Route::get('home', 'HomeController@index');
+
+
+
+/*  ======================================== 
+
+	Rotas relacionadas ao bloco NEWSLETTERS
+	
+	========================================
+*/
 
 //Rota para a tela de listagem das NewsLetters
 Route::get('/home/newsletter', 'NewsLetterController@index');
@@ -45,3 +71,32 @@ Route::get('/home/newsletter/show/{id}', 'NewsLetterController@show');
 
 //Rota para remoção de newsletter
 Route::get('/home/newsletter/destroy/{id}', 'NewsLetterController@destroy'); 
+
+
+/*  ======================================== 
+
+	Rotas relacionadas ao bloco PESSOAS
+	
+	========================================
+*/
+
+//Rota para a tela de listagem das Pessoas
+Route::get('/home/people', 'NewsLetterController@index');
+
+//Rota para o formulário de criação de pessoa
+Route::get('/home/people/new', function() {
+	return view('people/create');
+});
+
+//Rota para o save de pessoa
+Route::post('/home/people/new', 'PeopleController@store');
+
+//Rota para edição de pessoa
+Route::get('/home/people/update/{id}', 'PeopleController@update'); 
+Route::post('/home/people/update/{id}', 'PeopleController@store'); 
+
+//Rota para visualização de pessoa
+Route::get('/home/people/show/{id}', 'PeopleController@show'); 
+
+//Rota para remoção de pessoa
+Route::get('/home/people/destroy/{id}', 'PeopleController@destroy'); 
