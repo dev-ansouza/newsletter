@@ -8,7 +8,7 @@
 				<div class="panel-heading">
 
 					<div class="col-sm-12">
-						<a type="button" class="pull-right" href="{{ url('home') }}"><- voltar</a>
+						<a type="button" class="pull-left" href="{{ url('home') }}"><- voltar</a>
 					</div>
 
 					<div class="col-sm-12">
@@ -52,6 +52,10 @@
 								</td>
 							</tr>
 							@endforeach
+						@else
+							<tr>
+								<td>Não foram encontrados NewsLetters cadastrados!</td>
+							</tr>
 						@endif
 						</tbody>
 					</table>

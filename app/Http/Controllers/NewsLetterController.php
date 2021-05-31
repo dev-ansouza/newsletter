@@ -14,7 +14,7 @@ class NewsLetterController extends Controller {
 
 
 	/**
-	 * Display a listing of the resource.
+	 * Responsável pela funcionalidade da listagem de newsletters.
 	 *
 	 * @return Response
 	 */

@@ -13,13 +13,14 @@
 						</h1>
 					</div>
 
-                    <form>
+                    <form action="POST">
                         <div class="form-group">
                             <label for="titulo">Título</label>
-                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título">
+                            <input type="titulo" style="width: 30%;" class="form-control" id="titulo" name="titulo" placeholder="Título" autofocus>
                         </div>
 
                         <div class="form-group">
+                            <label for="text">NewsLetter</label>
                             <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!"></textarea>
                         </div>
 
