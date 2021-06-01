@@ -100,3 +100,22 @@ Route::get('/home/people/show/{id}', 'PeopleController@show');
 
 //Rota para remoção de pessoa
 Route::get('/home/people/destroy/{id}', 'PeopleController@destroy'); 
+
+
+/*  ======================================== 
+
+	Rotas relacionadas ao bloco ENVIAR NEWSLETTERS
+	
+	========================================
+*/
+
+//Rota para a tela de listagem da tela Enviar NewsLetter
+Route::get('/home/sendnewsletter', 'SendNewsLetterController@index');
+
+//Rota para o formulário de envio de NewsLetter
+Route::get('/home/sendnewsletter/send', function() {
+	return view('sendnewsletter/send');
+});
+
+//Rota para o envio de uma newsletter
+Route::post('/home/sendnewsletter/send', 'SendNewsLetterController@store');
