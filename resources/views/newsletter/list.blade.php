@@ -30,7 +30,6 @@
 						<thead>
 						<tr>
 							<th class="col-sm-3">Título</th>
-							<th class="col-sm-4">Autor</th>
 							<th class="col-sm-2"></th>
 						</tr>
 						</thead>
@@ -39,7 +38,6 @@
 							@foreach($newsletters as $newsletter)	
 							<tr>
 								<td scope="row">{{ $newsletter['titulo'] }}</td>
-								<td scope="row">{{ $newsletter['name'] }}</td>
 								<td>
 									<div class=" pull-right">
 										<a type="button" class="btn btn-info btn-sm" href="{{ url('/home/newsletter/update/' . $newsletter['id']) }}">
