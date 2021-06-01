@@ -28,7 +28,7 @@ class SendNewsLetterController extends Controller {
 					->join('newsletters', 'sendnewsletters.newsletter_id', '=', 'newsletters.id')
 					->join('peoples', 'sendnewsletters.people_id', '=', 'peoples.id')
 					->where('sendnewsletters.user_id', '=', $user_id)
-					->select('sendnewsletters.*', 'newsletters.titulo', 'peoples.nome', 'peoples.email')
+					->select('sendnewsletters.*', 'newsletters.titulo')
 					->get();
 
 		//Converte os resultados para JSON e armazena na array $data
@@ -77,15 +77,22 @@ class SendNewsLetterController extends Controller {
 	public function store(Request $request)
 	{
 		//Armazena os dados da requisição
-		$data = $request->all();
+		$request = $request->all();
 
 		//Armazena o id do usuário logado
 		$user_id = Auth::user()->id;
 
 		//Definição da array que armazenará os dados a serem salvos
-		$data = [];
+		$data = [
+			'newsletter_id' => $request['newsletter_id'],
+			'people_id' => $request['people_id'],
+			'user_id' => $user_id,
+		];
+
+		//Cria no DB uma nova coluna com os dados de newletter enviados.
+		SendNewsLetter::create($data);
 
 		//Retorna para a view de listagem
-		return redirect('/home/people');
+		return redirect('/home/sendnewsletter');
 	}
 }
