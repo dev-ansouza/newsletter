@@ -16,15 +16,23 @@
                     <form method="POST">
                         <div class="form-group">
                             <label for="nome">NewsLetter</label>
-                            <input type="nome" style="width: 30%;" class="form-control" id="nome" name="nome" placeholder="Nome" autofocus required>
+                            <select style="width: 30%;" class="form-control" id="newsletter_id" name="newsletter_id" placeholder="NewsLetter" autofocus required>
+                                <option value="">Selecione uma NewsLetter</option>
+                                @foreach($newsletters as $newsletter)
+                                    <option value="{{ $newsletter['id'] }}"> {{ $newsletter['titulo'] }} </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="titulo">E-mail</label>
-                            <input type="email" style="width: 30%;" class="form-control" id="email" name="email" placeholder="E-mail" required>
+                        <label for="nome">Pessoa(s)</label>
+                            <select style="width: 40%;" class="form-control" id="people_id" name="people_id" placeholder="Pessoa(s)" autofocus required>
+                                <option value="">Selecione a(s) pessoa(s)</option>
+                                @foreach($peoples as $people)
+                                    <option value="{{ $people['id'] }}"> {{ $people['nome'] }} - {{ $people['email'] }} </option>
+                                @endforeach
+                            </select>
                         </div>
-
-                        <input type="text" value="" data-role="tagsinput" id="tags" class="form-control">
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -34,12 +42,9 @@
                         </div>
 
                     </form>
-
 				</div>
 			</div>
 		</div>
 	</div>
 </div> 
-<!-- Bootstrap Input tags -->
-<script src="../js/bootstrap-tagsinput.js"></script>
 @endsection('content')

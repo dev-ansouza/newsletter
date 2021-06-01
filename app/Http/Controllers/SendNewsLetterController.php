@@ -54,11 +54,17 @@ class SendNewsLetterController extends Controller {
 				->select('newsletters.id', 'newsletters.titulo')
 				->get();
 
+		//Converte os resultados para JSON e armazena na array $newsletters
+		$newsletters['newsletters'] = json_decode(json_encode($newsletters), true);
+
 		//Retorna as pessoas vinculadas ao usuário logado para serem exibidas em um select
 		$peoples = DB::table('peoples')
 				->where('peoples.user_id', '=', $user_id)
 				->select('peoples.id', 'peoples.nome', 'peoples.email')
 				->get();
+
+		//Converte os resultados para JSON e armazena na array $peoples
+		$peoples['peoples'] = json_decode(json_encode($peoples), true);
 
 		return view('sendnewsletter/send', $newsletters, $peoples);
 	}

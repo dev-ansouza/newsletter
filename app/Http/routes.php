@@ -123,7 +123,8 @@ Route::get('/home/relatorio', 'RelatorioController@index');
 //Rota para a tela de listagem da tela Enviar NewsLetter
 Route::get('/home/sendnewsletter', 'SendNewsLetterController@index');
 
-//Rota para o formulario de envio de uma newsletter
+
+//Rota para o formulário de envio de newsletter
 Route::get('/home/sendnewsletter/send', 'SendNewsLetterController@send');
 
 //Rota para o envio de uma newsletter
