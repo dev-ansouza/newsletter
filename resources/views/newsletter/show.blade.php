@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="text">NewsLetter</label>
-                            <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!" disabled><?php echo $newsletter->titulo ?></textarea>
+                            <textarea id="text" name="text" placeholder="Escreva seu NewsLetter aqui!" disabled><?php echo $newsletter->text ?></textarea>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
