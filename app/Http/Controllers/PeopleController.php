@@ -69,14 +69,36 @@ class PeopleController extends Controller {
 		//Verifica se está em edição
 		if (!empty($data['id'])) {
 
-			DB::table('peoples')
-			->where('peoples.id', '=', $data['id'])
-			->update($people); 
+			//Se retornar falso, não existe pessoa cadastrada com o mesmo nome
+			if($this->verifyPeople($data, $user_id) === false){
+
+				DB::table('peoples')
+				->where('peoples.id', '=', $data['id'])
+				->update($people); 
+
+			} else {
+
+				// //Retorna mensagem de erro
+				// return redirect()->back()->with('error', 'Pessoa já cadastrada!');
+			}
 
 		} else {
 
-			//Cria uma nova pessoa.
-			People::create($people);
+			//Se retornar falso, não existe pessoa cadastrada com o mesmo email
+			if($this->verifyPeople($data, $user_id) === false){
+				
+				//Cria uma nova pessoa.
+				People::create($people);
+
+			} else {
+
+				// $error = [
+				// 	'message' => 'Pessoa já cadastrada!'
+				// ];
+
+				//Retorna mensagem de erro
+				// return $error;
+			}
 		}
 
 		//Retorna para a view de listagem
@@ -123,6 +145,43 @@ class PeopleController extends Controller {
 
 		//Retorna a view com os parametros a serem usados
 		return view('people/update', ['people' => $people]);		
+	}
+
+	/**
+	 * Verifica se já existe a pessoa com o mesmo email especificado no formulário vinculada ao usuário logado
+	 * 
+	 * @param array $data
+	 * @param integer $user_id
+	 */
+	public function verifyPeople($data, $user_id) 
+	{
+		//Se estiver em edição
+		if (!empty($data['id'])) {
+
+			//Query 
+			$request = DB::table('peoples')
+			->where('peoples.user_id', '=', $user_id ) 
+			->where('peoples.email', '=', $data['email'])
+			->where('peoples.id', '=', $data['id'])
+			->select('peoples.*')
+			->get();
+
+		} else {
+
+			//Query que faz a verificação
+			$request = DB::table('peoples')
+			->where('peoples.user_id', '=', $user_id ) 
+			->where('peoples.email', '=', $data['email'])
+			->select('peoples.*')
+			->get();
+		}
+
+		//Se não for retornado nenhuma pessoa com o mesmo email retorna false, se sim, retorna true
+		if(empty($request)){
+			return false;
+		} else{
+			return true;
+		}
 	}
 
 	/**

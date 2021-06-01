@@ -14,6 +14,7 @@
 					</div>
 
                     <form method="POST">
+
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input type="nome" style="width: 30%;" class="form-control" id="nome" name="nome" placeholder="Nome" autofocus required>
