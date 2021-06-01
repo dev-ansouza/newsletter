@@ -1,23 +1,32 @@
-## Laravel PHP Framework
+# NewsLetter
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Criado para que o usuário possa criar boletins de noticias e envia-los pelo mundo de uma forma digital.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Desenvolvido com Lavavel 5 - https://laravel.com/docs/5.0
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Instalação
 
-## Official Documentation
+- Deve ter o composer instalado em seu computador 
+https://getcomposer.org/
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+- Utilizar o xampp com php versao 5.6.40
+https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/5.6.40/xampp-windows-x64-5.6.40-1-VC11-installer.exe/download
 
-## Contributing
+- Git clone do projeto na pasta xampp/htdocs
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+- Executar o comando a seguir dentro da pasta do projeto para instalar as bibliotécas nescessárias:
 
-### License
+```sh
+composer update
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+- Acessar o phpmyadmim e criar uma base de dados -> ##localhost/phpmyadmin
+nome da base de dados: newsletter 
+padrao utf8_general_ci
+
+- Copiar os dados do arquivo de configuração: ".env-example" e colar no arquivo ".env"
+
+- Rodar as migrations com o comando:
+```sh
+php artisan migrate
+````
