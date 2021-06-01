@@ -19,10 +19,10 @@
 	<![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" style="height: 60px">
 		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand"><i><b>NewsLetter</b></i></a>
+			<div class="navbar-header" style="margin-top: 7px">
+				<a class="navbar-brand" style="font-size: 22px;"><i><b>NewsLetter</b></i></a>
 
 				@if (!Auth::guest())
 				<a class="navbar-brand" href="{{ url('home') }}">Home</a>
