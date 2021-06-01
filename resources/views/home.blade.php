@@ -17,7 +17,7 @@
 							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" role="button" href="{{ url('/home/newsletter') }}">
 								<div style="margin-top: 50px;">NewsLetters</div>
 								<div>
-									<h1 class="glyphicon glyphicon-envelope"></h1>
+									<h1 class="glyphicon glyphicon-file"></h1>
 								</div>
 							</a>
 						</div>
@@ -34,6 +34,16 @@
 								<div style="margin-top: 50px;">Relatório</div>
 								<div>
 									<h1 class="glyphicon glyphicon-file"></h1>
+								</div>
+							</a>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-sm-12">
+							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" role="button" href="{{ url('/home/newsletter') }}">
+								<div style="margin-top: 50px;">Enviar NewsLetter</div>
+								<div>
+									<h1 class="glyphicon glyphicon-envelope"></h1>
 								</div>
 							</a>
 						</div>
