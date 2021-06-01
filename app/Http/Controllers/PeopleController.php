@@ -59,18 +59,19 @@ class PeopleController extends Controller {
 		//Armazena o id do usuário logado
 		$user_id = Auth::user()->id;
 
-		//Definição da array que armazenará os dados a serem salvos
-		$people = [
-			'nome' => $data['nome'],
-			'email' => $data['email'],
-			'user_id' => $user_id
-		];
-
 		//Verifica se está em edição
 		if (!empty($data['id'])) {
 
+			//Definição da array que armazenará os dados a serem salvos
+			$people = [
+				'id' => $data['id'],
+				'nome' => $data['nome'],
+				'email' => $data['email'],
+				'user_id' => $user_id
+			];
+
 			//Se retornar falso, não existe pessoa cadastrada com o mesmo nome
-			if($this->verifyPeople($data, $user_id) === false){
+			if($this->verifyPeople($people, $user_id) === true){
 
 				DB::table('peoples')
 				->where('peoples.id', '=', $data['id'])
@@ -84,8 +85,15 @@ class PeopleController extends Controller {
 
 		} else {
 
+			//Definição da array que armazenará os dados a serem salvos
+			$people = [
+				'nome' => $data['nome'],
+				'email' => $data['email'],
+				'user_id' => $user_id
+			];
+
 			//Se retornar falso, não existe pessoa cadastrada com o mesmo email
-			if($this->verifyPeople($data, $user_id) === false){
+			if($this->verifyPeople($people, $user_id) === false){
 				
 				//Cria uma nova pessoa.
 				People::create($people);
@@ -158,13 +166,17 @@ class PeopleController extends Controller {
 		//Se estiver em edição
 		if (!empty($data['id'])) {
 
-			//Query 
+			//Query que faz a verificação
 			$request = DB::table('peoples')
 			->where('peoples.user_id', '=', $user_id ) 
 			->where('peoples.email', '=', $data['email'])
 			->where('peoples.id', '=', $data['id'])
 			->select('peoples.*')
 			->get();
+
+			//Retorna true se encontrar uma pessoa com os mesmos dados do formulário
+			return true;
+
 
 		} else {
 
@@ -174,14 +186,11 @@ class PeopleController extends Controller {
 			->where('peoples.email', '=', $data['email'])
 			->select('peoples.*')
 			->get();
+
+			//Retorna true se não encontrar uma pessoa com os mesmos dados do formulário
+			return false;
 		}
 
-		//Se não for retornado nenhuma pessoa com o mesmo email retorna false, se sim, retorna true
-		if(empty($request)){
-			return false;
-		} else{
-			return true;
-		}
 	}
 
 	/**

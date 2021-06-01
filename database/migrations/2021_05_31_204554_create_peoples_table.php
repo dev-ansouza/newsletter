@@ -21,7 +21,7 @@ class CreatePeoplesTable extends Migration {
 			$table->string('nome');
 
 			//Armazena o email da pessoa
-			$table->string('email')->unique();
+			$table->string('email');
 
 			//Armazena o id do usuário responsável por criar a pessoa
 			$table->integer('user_id')->unsigned();
