@@ -21,7 +21,7 @@
 						<thead>
 						<tr>
 							<th class="col-sm-3">NewsLetter</th>
-							<th class="col-sm-3" >E-mail</th>
+							<th class="col-sm-3" >Destinatário</th>
 							<th class="col-sm-3" >Data/Hora do envio</th>
 						</tr>
 						</thead>
