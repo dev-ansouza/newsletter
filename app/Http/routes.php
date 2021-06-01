@@ -104,6 +104,17 @@ Route::get('/home/people/destroy/{id}', 'PeopleController@destroy');
 
 /*  ======================================== 
 
+	Rotas relacionadas ao bloco RELATÓRIO
+	
+	========================================
+*/
+
+//Rota para a tela de listagem de Relatório
+Route::get('/home/relatorio', 'RelatorioController@index');
+
+
+/*  ======================================== 
+
 	Rotas relacionadas ao bloco ENVIAR NEWSLETTERS
 	
 	========================================

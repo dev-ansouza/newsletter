@@ -30,10 +30,10 @@
 							</a>
 						</div>
 						<div class="col-sm-4">
-							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" href="#" role="button">
+							<a class="btn btn-primary btn-lg" style="width: 100%; height: 200px" href="{{ url('/home/relatorio') }}" role="button">
 								<div style="margin-top: 50px;">Relatório</div>
 								<div>
-									<h1 class="glyphicon glyphicon-file"></h1>
+									<h1 class="glyphicon glyphicon-list-alt"></h1>
 								</div>
 							</a>
 						</div>
