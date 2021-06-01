@@ -43,9 +43,24 @@ class SendNewsLetterController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function send()
 	{
-		return view('sendnewsletter/send');
+		//Armazena o id do usuário logado
+		$user_id = Auth::user()->id;
+
+		//Retorna as newsletters vinculadas ao usuário logado para serem exibidas em um select
+		$newsletters = DB::table('newsletters')
+				->where('newsletters.user_id', '=', $user_id)
+				->select('newsletters.id', 'newsletters.titulo')
+				->get();
+
+		//Retorna as pessoas vinculadas ao usuário logado para serem exibidas em um select
+		$peoples = DB::table('peoples')
+				->where('peoples.user_id', '=', $user_id)
+				->select('peoples.id', 'peoples.nome', 'peoples.email')
+				->get();
+
+		return view('sendnewsletter/send', $newsletters, $peoples);
 	}
 
 	/**

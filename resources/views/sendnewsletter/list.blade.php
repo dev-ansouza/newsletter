@@ -19,7 +19,7 @@
 
 					<div class="col-sm-12">
 						<div class="btn-group pull-right">
-							<a type="button" class="btn btn-primary" href="{{ url('/home/sendnewsletter/new') }}">
+							<a type="button" class="btn btn-primary" href="{{ url('/home/sendnewsletter/send') }}">
 								<span class="glyphicon glyphicon-plus"></span>
 								Enviar
 							</a>
