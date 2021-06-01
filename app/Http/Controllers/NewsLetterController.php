@@ -139,6 +139,6 @@ class NewsLetterController extends Controller {
 		->delete();
 		
 		//Retorna a view com os parametros a serem usados
-		return redirect('/newsletter');	
+		return redirect('/home/newsletter');	
 	}
 }

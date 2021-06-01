@@ -5,14 +5,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+
 use Illuminate\Http\Request;
 
-class RelatorioController extends Controller {
+class LogController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
 	/**
-	 * Responsável pela funcionalidade da listagem da tela Relatório.
+	 * Responsável pela funcionalidade da listagem da tela Logs.
 	 
 	 * @return Response
 	 */
@@ -34,6 +35,6 @@ class RelatorioController extends Controller {
 		$data['data'] = json_decode(json_encode($results), true);
 
 		//Retorna a view com os parametros a serem usados
-		return view('relatorio/list', $data);
+		return view('log/list', $data);
 	}
 }

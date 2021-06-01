@@ -13,7 +13,7 @@
 
 					<div class="col-sm-12">
 						<h1 class="text-center">
-							Relatório
+							Logs
 						</h1>
 					</div>
 
@@ -38,7 +38,6 @@
 										data-placement="bottom" 
 										title="{{ $data['email'] }}">
 										{{ $data['nome'] }}
-										<span>;</span>
 									</button>
 								</td>
 								<td scope="row">{{ $data['created_at'] }}</td>

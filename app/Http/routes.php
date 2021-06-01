@@ -104,13 +104,13 @@ Route::get('/home/people/destroy/{id}', 'PeopleController@destroy');
 
 /*  ======================================== 
 
-	Rotas relacionadas ao bloco RELATÓRIO
+	Rotas relacionadas ao bloco LOGS
 	
 	========================================
 */
 
-//Rota para a tela de listagem de Relatório
-Route::get('/home/relatorio', 'RelatorioController@index');
+//Rota para a tela de listagem de Logs
+Route::get('/home/log', 'LogController@index');
 
 
 /*  ======================================== 
