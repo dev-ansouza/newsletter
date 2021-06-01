@@ -24,8 +24,8 @@ composer update
 http://localhost/phpmyadmin/index.php
 
 - Criar base de dados
-nome: newsletter 
-agrupamento: utf8_general_ci
+> nome: newsletter 
+> agrupamento: utf8_general_ci
 
 - Rodar as migrations com o comando:
 ```sh
