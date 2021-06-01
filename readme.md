@@ -4,7 +4,7 @@ Criado para que o usuário possa criar boletins de noticias e envia-los pelo mun
 
 Desenvolvido com Lavavel 5 - https://laravel.com/docs/5.0
 
-## Instalação
+## Instalação 
 
 - Deve ter o composer instalado em seu computador 
 https://getcomposer.org/
@@ -20,11 +20,12 @@ https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/5.6.40/xampp-window
 composer update
 ```
 
-- Acessar o phpmyadmim e criar uma base de dados -> ##localhost/phpmyadmin
-nome da base de dados: newsletter 
-padrao utf8_general_ci
+- Acessar o phpmyadmim
+http://localhost/phpmyadmin/index.php
 
-- Copiar os dados do arquivo de configuração: ".env-example" e colar no arquivo ".env"
+- Criar base de dados
+nome: newsletter 
+agrupamento: utf8_general_ci
 
 - Rodar as migrations com o comando:
 ```sh
