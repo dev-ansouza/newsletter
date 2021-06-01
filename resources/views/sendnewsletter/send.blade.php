@@ -37,7 +37,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Confirmar</button>
+                            <button type="submit" class="btn btn-success">Enviar</button>
                             <a type="button" class="btn btn-danger" href="{{ url('home/sendnewsletter') }}">Cancelar</a>
                         </div>
 

@@ -13,7 +13,7 @@
 
 					<div class="col-sm-12">
 						<h1 class="text-center">
-							Send NewsLetter
+							Enviar NewsLetter
 						</h1>
 					</div>
 
