@@ -30,8 +30,7 @@
 						<thead>
 						<tr>
 							<th class="col-sm-3">NewsLetter</th>
-							<th class="col-sm-4" >E-mail(s)</th>
-							<th class="col-sm-2"></th>
+							<th class="col-sm-4">Data/Hora do envio</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -39,17 +38,7 @@
 							@foreach($data as $data)	
 							<tr>
 								<td scope="row">{{ $data['titulo'] }}</td>
-								<td scope="row">
-									<button 
-										type="button" 
-										class="btn-link btn-sm" 
-										data-toggle="tooltip" 
-										data-placement="bottom" 
-										title="{{ $data['email'] }}">
-										{{ $data['nome'] }}
-										<span>;</span>
-									</button>
-								</td>
+								<td scope="row">{{ $data['created_at'] }}</td>
 							</tr>
 							@endforeach
 						@else
