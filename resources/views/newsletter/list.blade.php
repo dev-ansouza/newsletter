@@ -55,7 +55,7 @@
 							@endforeach
 						@else
 							<tr>
-								<td>Não foram encontrados NewsLetters cadastrados!</td>
+								<td>Não foram encontradas NewsLetters cadastradas!</td>
 							</tr>
 						@endif
 						</tbody>
