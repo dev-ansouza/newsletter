@@ -6,7 +6,12 @@ use App\SendNewsLetter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 use Illuminate\Http\Request;
+
 
 class SendNewsLetterController extends Controller {
 
@@ -79,20 +84,67 @@ class SendNewsLetterController extends Controller {
 		//Armazena os dados da requisição
 		$request = $request->all();
 
-		//Armazena o id do usuário logado
-		$user_id = Auth::user()->id;
+		//Retorna os dados da newsletter
+		$newsletter = DB::table('newsletters')
+				->where('newsletters.id', '=', $request['newsletter_id'])
+				->select('newsletters.text')
+				->get();
+		$newsletter = json_decode(json_encode($newsletter), true);
 
-		//Definição da array que armazenará os dados a serem salvos
-		$data = [
-			'newsletter_id' => $request['newsletter_id'],
-			'people_id' => $request['people_id'],
-			'user_id' => $user_id,
-		];
+		//Retorna os dados da pessoa selecionada 
+		$people = DB::table('peoples')
+				->where('peoples.id', '=', $request['people_id'])
+				->select('peoples.email')
+				->get();
+		$people = json_decode(json_encode($people), true);
 
-		//Cria no DB uma nova coluna com os dados de newletter enviados.
-		SendNewsLetter::create($data);
+		//Cria uma nova instancia do PHPMailer
+		$mail = new PHPMailer(true);
 
-		//Retorna para a view de listagem
-		return redirect('/home/sendnewsletter');
+		try {
+			//Server settings
+			$mail->SMTPDebug  = SMTP::DEBUG_SERVER;                     //Enable verbose debug output
+			$mail->isSMTP();                                            //Send using SMTP
+			$mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
+			$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+			$mail->Username   = 'newsletterlaravel5@gmail.com';         //SMTP username
+			$mail->Password   = 'ealfptbuubjtcoue';                     //SMTP password
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable implicit TLS encryption
+			$mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+			//Recipients
+			$mail->setFrom('developer.ansouza@gmail.com', 'PHPMG NewsLetter');
+			$mail->addAddress($people[0]['email']);    				 	//Add a recipient
+			// $mail->addReplyTo('info@example.com', 'Information');
+			// $mail->addCC('cc@example.com');
+			// $mail->addBCC('bcc@example.com');
+
+
+			//Content
+			$mail->isHTML(true);                                  		//Set email format to HTML
+			$mail->Subject = 'PHPMG - NewsLetter';
+			$mail->Body    = $newsletter[0]['text'];
+			$mail->send();
+
+			//Armazena o id do usuário logado
+			$user_id = Auth::user()->id;
+
+			//Definição da array que armazenará os dados a serem salvos
+			$data = [
+				'newsletter_id' => $request['newsletter_id'],
+				'people_id' => $request['people_id'],
+				'user_id' => $user_id,
+			];
+
+			//Cria no DB uma nova coluna com os dados de newletter enviados.
+			SendNewsLetter::create($data);
+
+			//Retorna para a view de listagem
+			return redirect('/home/sendnewsletter');
+			
+		} catch (Exception $e) {
+			echo "Mensagem não enviada. Mailer Error: {$mail->ErrorInfo}";
+		}
+
 	}
 }
