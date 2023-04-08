@@ -24,16 +24,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                        <label for="nome">Pessoa(s)</label>
-                            <select style="width: 40%;" class="form-control" id="people_id" name="people_id" placeholder="Pessoa(s)" autofocus required>
-                                <option value="">Selecione a(s) pessoa(s)</option>
-                                @foreach($peoples as $people)
-                                    <option value="{{ $people['id'] }}"> {{ $people['nome'] }} - {{ $people['email'] }} </option>
-                                @endforeach
-                            </select>
-                        </div>
-
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
@@ -47,4 +37,11 @@
 		</div>
 	</div>
 </div> 
+<script>
+    $( ".select2-multiple" ).select2({
+  theme: "bootstrap",
+	placeholder: "Select a State",
+  containerCssClass: ':all:'
+});
+</script>
 @endsection('content')
